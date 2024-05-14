@@ -20,9 +20,6 @@ func startRepl(cfg *config) {
 			continue
 		}
 
-		if len(cleaned) == 3 {
-		}
-
 		command := cleaned[0]
 		args := []string{}
 

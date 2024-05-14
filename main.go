@@ -1,12 +1,14 @@
 package main
 
+import "github.com/raugustin93/bible-cli/internal/bibleapi"
+
 type config struct {
-	book string
+	bibleApiClient bibleapi.Client
 }
 
 func main() {
 	cfg := config{
-		book: "nv",
+		bibleApiClient: bibleapi.NewClient(),
 	}
 	startRepl(&cfg)
 }

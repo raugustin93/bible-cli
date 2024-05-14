@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"os"
 )
@@ -25,6 +26,14 @@ func callbackExit(cfg *config, args ...string) error {
 }
 
 func callbackRead(cfg *config, args ...string) error {
-	fmt.Println("Reading TODO...")
+	valid := 1 < len(args) && len(args) < 4
+	if !valid {
+		return errors.New("there must be 2 or 3 arguments for read command. *Book* *Chapter* *Verse?*")
+	}
+	_, err := cfg.bibleApiClient.GetVerse(args[0], args[1], args[2])
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
